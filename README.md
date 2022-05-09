@@ -13,15 +13,12 @@ This repository contains codes for:
 
 ## Table of Contents
 
-- [Pokemon Tokens](#pokemon-tokens)
-  - [EECS 6883: Final Project, Spring 2022](#eecs-6883-final-project-spring-2022)
-  - [Table of Contents](#table-of-contents)
-  - [Background](#background)
-  - [Install](#install)
-  - [Small Contract](#small-contract)
-  - [Dapp](#dapp)
-  - [Huygens](#huygens)
-  - [Authors](#authors)
+- [Background](#background)
+- [Install](#install)
+- [Small Contract](#small-contract)
+- [Dapp](#dapp)
+- [Huygens](#huygens)
+- [Authors](#authors)
 
 ## Background
 
