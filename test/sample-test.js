@@ -5,7 +5,7 @@ const fs = require('fs');
 describe("PokemonToken", function () {
   it("Should display pokemons once minted", async function () {
 
-    const contractPath = `.artifacts/contracts/PokemonToken.sol/PokemonToken.json`;
+    const contractPath = `artifacts/contracts/PokemonToken.sol/PokemonToken.json`;
     const obj = JSON.parse(fs.readFileSync(contractPath));
     const size = Buffer.byteLength(obj.deployedBytecode, 'utf8') / 2;
     console.log('contract size is', size);  
