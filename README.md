@@ -27,8 +27,10 @@ This repository contains codes for:
 ## Background
 
 **In this project, we try to develop non-fungiable token of Pokemon with following functions**
->1. 
->2.
+>1. Draw Pokemons
+>2. Transfer Pokemon Coin
+>3. Transfer Pokemons
+>4. Pokemons combat
 
 **The whole project can be divided into three parts:**
 >1. Small Contract
@@ -43,7 +45,7 @@ dependencies:
 
 ```sh
 git clone https://github.com/kkkevinkkkkk/PokemonToken.git
-cd Pokemon
+cd PokemonToken
 npm install
 ```
 
