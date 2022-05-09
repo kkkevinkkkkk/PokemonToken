@@ -13,7 +13,6 @@ This repository contains codes for:
 3. Deployment  on Huygens network
 
 ## Table of Contents
-
 - [Pokemon Tokens](#pokemon-tokens)
   - [EECS 6883: Final Project, Spring 2022](#eecs-6883-final-project-spring-2022)
   - [Table of Contents](#table-of-contents)
