@@ -7,12 +7,12 @@ This is the repository of source code for our final project of EECS E6883: Block
 
 This repository contains codes for:
 
-
 1. Small contract for Pokemon tokens
 2. React Dapp to interact with small contract
 3. Deployment  on Huygens network
 
 ## Table of Contents
+
 - [Pokemon Tokens](#pokemon-tokens)
   - [EECS 6883: Final Project, Spring 2022](#eecs-6883-final-project-spring-2022)
   - [Table of Contents](#table-of-contents)
