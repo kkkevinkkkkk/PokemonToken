@@ -1,0 +1,92 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+  margin: 40px;
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+  background-color: white;
+  /* background-color: #282c34; */
+  /* min-height: 100vh; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  font-size: calc(20px + 2vmin);
+  color: #ffcc00;
+}
+
+.App-link {
+  color: #61dafb;
+}
+/* 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+.Homepage-title{
+  font: 50px bold;
+  color: #ffcc00;
+}
+
+.Homepage-text{
+  font: 30px bold;
+  color: #ffcc00;
+}
+
+.Text-margin{
+  margin: 20px;
+}
+
+.wide{
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button-margin{
+  margin: 5px;
+  padding: 0px;
+  font-weight:bold;
+}
+
+.Pokemon-logo{
+  width: 80%;
+  height: auto;
+}
+
+.Poke-name{
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 0px;
+}
+
+.Poke-detail{
+  font-size: 30px;
+}
+.Poke-detail-small{
+  font-size: 16px;
+}
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}

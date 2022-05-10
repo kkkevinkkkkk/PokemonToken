@@ -12,12 +12,14 @@ import contractAddress from "../contracts/contract-address.json";
 // These other components are just presentational ones: they don't have any
 // logic. They just render HTML.
 import { NoWalletDetected } from "./NoWalletDetected";
+
 import { ConnectWallet } from "./ConnectWallet";
-import { Loading } from "./Loading";
-import { Transfer } from "./Transfer";
-import { TransactionErrorMessage } from "./TransactionErrorMessage";
-import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
-import { NoTokensMessage } from "./NoTokensMessage";
+import { TransferPokemon } from "./TransferPokemon";
+import { TransferToken } from "./TransferToken";
+import { Afterlogin } from "./afterlogin";
+import { Lottory } from "./lottory";
+import { Fight } from "./fight";
+import { ViewAllPokemons } from "./ViewAllPokemons";
 
 // This is the Hardhat Network id, you might change it in the hardhat.config.js.
 // If you are using MetaMask, be sure to change the Network id to 1337.
@@ -54,6 +56,13 @@ export class Dapp extends React.Component {
       txBeingSent: undefined,
       transactionError: undefined,
       networkError: undefined,
+      currcoins: undefined,
+      currpoke_N: undefined,
+      is_new: undefined,
+      lottoryPoke: undefined,
+      myPokemon: undefined,
+      selectfight: undefined,
+      currpage: "waitingForLogin"
     };
 
     this.state = this.initialState;
@@ -65,6 +74,7 @@ export class Dapp extends React.Component {
     if (window.ethereum === undefined) {
       return <NoWalletDetected />;
     }
+    
 
     // The next thing we need to do, is to ask the user to connect their wallet.
     // When the wallet gets connected, we are going to save the users's address
@@ -73,7 +83,8 @@ export class Dapp extends React.Component {
     //
     // Note that we pass it a callback that is going to be called when the user
     // clicks a button. This callback just calls the _connectWallet method.
-    if (!this.state.selectedAddress) {
+    if (this.state.currpage==="waitingForLogin"){
+      if (!this.state.selectedAddress) {
       return (
         <ConnectWallet 
           connectWallet={() => this._connectWallet()} 
@@ -81,87 +92,42 @@ export class Dapp extends React.Component {
           dismiss={() => this._dismissNetworkError()}
         />
       );
+      }
     }
-    console.log("debug", this)
+    else if (this.state.currpage==="homepage"){
+      // If the token data or the user's balance hasn't loaded yet, we show
+      // a loading component.
+      // register new user
+      if (this.state.is_new==null){
+        return (<div>Registering New User......</div>)
+      }
+      this._updateBalance();
 
-    // If the token data or the user's balance hasn't loaded yet, we show
-    // a loading component.
-    
-    if (!this.state.tokenData || !this.state.balance) {
-      return <Loading />;
+      return (
+        < Afterlogin
+          _this ={this}
+        />)
+    }
+    else if (this.state.currpage==='lottory'){
+      return (
+        < Lottory
+          _this ={this}
+        />
+      )
     }
 
-    // If everything is loaded, we render the application.
-    return (
-      <div className="container p-4">
-        <div className="row">
-          <div className="col-12">
-            <h1>
-              {this.state.tokenData.name} ({this.state.tokenData.symbol})
-            </h1>
-            <p>
-              Welcome <b>{this.state.selectedAddress}</b>, you have{" "}
-              <b>
-                {this.state.balance.toString()} {this.state.tokenData.symbol}
-              </b>
-              .
-            </p>
-          </div>
-        </div>
-
-        <hr />
-
-        <div className="row">
-          <div className="col-12">
-            {/* 
-              Sending a transaction isn't an immediate action. You have to wait
-              for it to be mined.
-              If we are waiting for one, we show a message here.
-            */}
-            {this.state.txBeingSent && (
-              <WaitingForTransactionMessage txHash={this.state.txBeingSent} />
-            )}
-
-            {/* 
-              Sending a transaction can fail in multiple ways. 
-              If that happened, we show a message here.
-            */}
-            {this.state.transactionError && (
-              <TransactionErrorMessage
-                message={this._getRpcErrorMessage(this.state.transactionError)}
-                dismiss={() => this._dismissTransactionError()}
-              />
-            )}
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12">
-            {/*
-              If the user has no tokens, we don't show the Transfer form
-            */}
-            {this.state.balance.eq(0) && (
-              <NoTokensMessage selectedAddress={this.state.selectedAddress} />
-            )}
-
-            {/*
-              This component displays a form that the user can use to send a 
-              transaction and transfer some tokens.
-              The component doesn't have logic, it just calls the transferTokens
-              callback.
-            */}
-            {this.state.balance.gt(0) && (
-              <Transfer
-                transferTokens={(to, amount) =>
-                  this._transferTokens(to, amount)
-                }
-                tokenSymbol={this.state.tokenData.symbol}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    );
+    else if (this.state.currpage==='transC'){
+      return TransferToken(this)
+    }
+    else if (this.state.currpage==='transP'){
+      return TransferPokemon(this);
+    }
+    else if (this.state.currpage==='fight'){
+      return Fight(this);
+    }
+    else if (this.state.currpage==='viewAll'){
+      return ViewAllPokemons(this);
+    }    
   }
 
   componentWillUnmount() {
@@ -214,6 +180,7 @@ export class Dapp extends React.Component {
     // We first store the user's address in the component's state
     this.setState({
       selectedAddress: userAddress,
+      currpage:"homepage"
     });
 
     // Then, we initialize ethers, fetch the token's data, and start polling
@@ -239,7 +206,15 @@ export class Dapp extends React.Component {
       this._provider.getSigner(0)
     );
     // register new user
-    await this._token.connect(this._token.signer).registerNewPlayer();
+    let _exsit=await this._token.connect(this._token.signer).checkPlayerExists(this.state.selectedAddress);
+    if (!_exsit){
+      await this._token.connect(this._token.signer).registerNewPlayer();
+      this.setState({is_new:"true"})
+    }
+    else{
+      this.setState({is_new:"false"})
+    }
+    // await this._token.connect(this._token.signer).registerNewPlayer();
   }
 
   // The next two methods are needed to start and stop polling data. While
@@ -275,15 +250,22 @@ export class Dapp extends React.Component {
   }
 
   async _updateBalance() {
-    // modify
+  
     const balance = await this._token.getMyCoins(this.state.selectedAddress);
-    // const balance = await this._token.balanceOf(this.state.selectedAddress);
     this.setState({ balance });
+    const currcoins = await this._token.getMyCoins(this.state.selectedAddress);
+    this.setState({ currcoins });
+    const myPokemon = await this._token.getMyPokemon(this.state.selectedAddress);
+    this.setState({ myPokemon });
+    const currpoke_N = myPokemon.length
+    this.setState({currpoke_N})
   }
+
 
   // This method sends an ethereum transaction to transfer tokens.
   // While this action is specific to this application, it illustrates how to
   // send a transaction.
+
   async _transferTokens(to, amount) {
     // Sending a transaction is a complex operation:
     //   - The user can reject it
@@ -307,7 +289,9 @@ export class Dapp extends React.Component {
       // We send the transaction, and save its hash in the Dapp's state. This
       // way we can indicate that we are waiting for it to be mined.
       // const tx = await this._token.transfer(to, amount);
+      
       const tx = await this._token.connect(this._token.signer).transferCoins(to, amount)
+      
       this.setState({ txBeingSent: tx.hash });
 
 

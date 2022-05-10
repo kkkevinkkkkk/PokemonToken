@@ -35,19 +35,25 @@ async function main () {
     
     await pokemonToken.connect(player0).registerNewPlayer();
     await pokemonToken.connect(player1).registerNewPlayer();
+    await pokemonToken.connect(player2).registerNewPlayer();
 
+    let tmp = pokemonToken.getAllPokemon();
     let coin = await pokemonToken.getMyCoins(player0.address)
     console.log('Has coin', coin.toString());
 
-    await pokemonToken.connect(player0).transferCoins(player1.address,50);
+    await pokemonToken.connect(player1).transferCoins(player0.address,50);
     coin = await pokemonToken.getMyCoins(player0.address)
     console.log("Has coin", coin.toString());
 
-    await pokemonToken.connect(player0).lottery();
+    let tx = await pokemonToken.connect(player2).lottery();
+    await pokemonToken.connect(player2).lottery();
+    await pokemonToken.connect(player2).lottery();
+    await pokemonToken.connect(player1).lottery();
+    await pokemonToken.connect(player1).lottery();
     await pokemonToken.connect(player1).lottery();
 
-    let myPokemon = await pokemonToken.getMyPokemon(player0.address)
-    console.log(myPokemon)
+    let myPokemon = await pokemonToken.getMyPokemon(player2.address)
+    console.log(myPokemon[0])
 
   }
   

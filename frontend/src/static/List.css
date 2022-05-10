@@ -1,0 +1,34 @@
+.PokemonTable {
+    table-layout: auto;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+}
+  
+.ImageRow {
+    width: 30%;
+  }
+.NameRow{
+    width: 10%;
+  }
+
+th, td {
+    border-bottom:  3px solid #ffcc00;
+    width: 50%;
+}
+tbody{
+    display: block;
+    overflow: auto;
+    height: 350px;
+}
+/* .itemnamerow{
+    border-right:3px solid #ffcc00;
+    display: block;
+} */
+
+tr{
+    display: block;
+}
+td{
+    width: 30%;
+}

@@ -87,8 +87,7 @@ contract PokemonToken{
     }
 
     function random() private view returns (uint256) {
-        // return uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, tokenId)));
-        return uint256(1);
+        return uint256(keccak256(abi.encodePacked(block.number, block.timestamp, tokenId)));
     }
 
     function drawPool() private view returns (uint256) {
@@ -210,9 +209,9 @@ contract PokemonToken{
     
         if (!playerExists[msg.sender]){
 
-            walletAddress[msg.sender]=unitCoins(200);
+            walletAddress[msg.sender]=unitCoins(10000);
             
-            currCoins = currCoins - unitCoins(200);
+            currCoins = currCoins - unitCoins(10000);
 
             playerExists[msg.sender]=true;
 
