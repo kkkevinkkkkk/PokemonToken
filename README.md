@@ -1,31 +1,28 @@
 # Pokemon Tokens
-## EECS 6883: Final Project, Spring 2022
+## ELEN 6883: Final Project, Spring 2022
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)]()
 
-This is the repository of source code for our final project of EECS E6883: Blockchain.
+This is the repository of source code for our final project of ELEN E6883: Blockchain.
 
 This repository contains codes for:
 
 1. Small contract for Pokemon tokens
-2. React Dapp to interact with small contract
+2. React Dapp to interact with users
 3. Deployment  on Huygens network
 
 ## Table of Contents
-
-- [Pokemon Tokens](#pokemon-tokens)
-  - [EECS 6883: Final Project, Spring 2022](#eecs-6883-final-project-spring-2022)
-  - [Table of Contents](#table-of-contents)
-  - [Background](#background)
-  - [Install](#install)
-  - [Small Contract](#small-contract)
-  - [Dapp](#dapp)
-  - [Huygens](#huygens)
-  - [Authors](#authors)
+   - [Background](#background)
+   - [Install](#install)
+   - [Small Contract](#small-contract)
+   - [Dapp](#dapp)
+   - [Huygens](#huygens)
+   - [Authors](#authors)
 
 ## Background
+In this project, we try to develop a small contract ensembling functions of cryptocurrency, non-fungiable token and games together. We named it Pokemon Tokens.
 
-**In this project, we try to develop non-fungiable token of Pokemon with following functions**
+**Our small contract includes following functions**
 >1. Draw Pokemons
 >2. Transfer Pokemon Coin
 >3. Transfer Pokemons
@@ -104,6 +101,9 @@ npm run interact-huygens
 
 
 ## Authors
-
+- Haoming Sun
+- Yukun Huang
+- Xixian Chen
+- Xintong Liu
 
 
