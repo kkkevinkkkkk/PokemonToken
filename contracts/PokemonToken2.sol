@@ -8,7 +8,7 @@ import "hardhat/console.sol";
 
 //contract PokemonToken is ERC721 {
 
-contract PokemonToken{
+contract PokemonToken2{
 
     address public owner;
     uint256 tokenId = 1;
@@ -87,8 +87,8 @@ contract PokemonToken{
     }
 
     function random() private view returns (uint256) {
-        return uint256(keccak256(abi.encodePacked(block.number, block.timestamp, tokenId)));
-        // return uint256(1);
+        // return uint256(keccak256(abi.encodePacked(block.number, block.timestamp, tokenId)));
+        return uint256(1);
     }
 
     function drawPool() private view returns (uint256) {

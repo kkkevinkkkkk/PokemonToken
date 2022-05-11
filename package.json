@@ -13,8 +13,8 @@
     "deploy:local": "hardhat run --network localhost scripts/deploy.js",
     "interact:local": "hardhat run --network localhost scripts/interact.js",
     "local-testnet": "hardhat node",
-    "deploy:huygens": "hardhat run --network huygens_dev scripts/deploy.js",
-    "interact:huygens": "hardhat run --network huygens_dev scripts/interact.js"
+    "deploy:huygens": "hardhat run --network huygens_dev scripts/deploy_huygens.js",
+    "interact:huygens": "hardhat run --network huygens_dev scripts/interact_huygens.js"
   },
   
   "keywords": [],

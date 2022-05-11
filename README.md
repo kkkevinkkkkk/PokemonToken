@@ -13,12 +13,15 @@ This repository contains codes for:
 
 ## Table of Contents
 
-- [Background](#background)
-- [Install](#install)
-- [Small Contract](#small-contract)
-- [Dapp](#dapp)
-- [Huygens](#huygens)
-- [Authors](#authors)
+- [Pokemon Tokens](#pokemon-tokens)
+  - [EECS 6883: Final Project, Spring 2022](#eecs-6883-final-project-spring-2022)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+  - [Install](#install)
+  - [Small Contract](#small-contract)
+  - [Dapp](#dapp)
+  - [Huygens](#huygens)
+  - [Authors](#authors)
 
 ## Background
 
@@ -78,17 +81,25 @@ npm start
 
 Open [http://localhost:3000/](http://localhost:3000/) to see your Dapp. You will
 need to have [Metamask](https://metamask.io) installed and listening to
-`localhost 8545`.
+`localhost 8545`. 
+> Note: When you import account into the wallet website, rembember not to import the small contract owner private key since we have some constraints for the owner. Feel free to import any other users.
+
 
 ## Huygens
 To deploy our Pokemon contract on Huygens-dev network
 ```sh
 npm run deploy-huygens
 ```
+The address of our latest deployed contract on huygens-dev network is `0x2159dd8b685Ae6482Eaa0a15BA2A4f4B2694BBF6`. 
+
+The private key of our accounts with test tokens could be found in [hardhat.config.js](hardhat.config.js).
+
 To use scripts to interact with contracts deployed on Huygens-dev network
 ```sh
 npm run interact-huygens
 ```
+> Note: If you employ your own contract, remeber to change the `address` in [interact_huygens.js](scripts/interact_huygens.js) to yours
+
 
 
 
