@@ -103,7 +103,7 @@ npm run interact-huygens
 ## Authors
 - Haoming Sun
 - Yukun Huang
-- Xixian Chen
+- Yixian Chen
 - Xintong Liu
 
 
